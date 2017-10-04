@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+<script src="./js/jquery.min.js"></script> 
+<script>
+	$(function(){
+	$("#cep").blur(function(){
+	
+	var ceplocalizer = "http://api.postmon.com.br/v1/cep/";
+	var cep = $("#cep").val();
+	var $xhr = $.get(ceplocalizer+cep);
+
+	$xhr.done(function(data){
+					$("#logradouro").val(data.logradouro);	
+					$("#complemento").val(data.complemento);
+					$("#bairro").val(data.bairro);
+					$("#cidade").val(data.cidade);
+					$("#estado").val(data.estado);
+					
+				});
+			});
+		})	
+</script>
+</head>
+<body>
+<form>
+		Nome: <input type="text" id="nome"/><br/> <br/>
+		 <fieldset id="caixa">
+		 <legend> Endereço </legend>
+			CEP: <input type="text" id="cep"/><br/>
+			Logradouro: <input type="text" id="logradouro"/><br/>
+			Complemento: <input type="text" id="complemento"/><br/>
+			Bairro: <input type="text" id="bairro"/><br/>
+			Cidade: <input type="text" id="cidade"/><br/>
+			Estado: <input type="text" id="estado"/><br/>
+		<input type="submit" value="Salvar"/>
+		</fieldset>
+	</form>
+</body>
+</html>
